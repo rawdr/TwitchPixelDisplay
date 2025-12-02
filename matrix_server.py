@@ -201,7 +201,7 @@ def load_config():
         default = {
             "wled_ip": "192.168.1.1",
             "twitch_channel": "#your_channel",
-            "twitch_nick": "your_bot",
+            "twitch_nick": "justinfan12345",
             "twitch_oauth": "oauth:your_token",
             "wled_preset_name": "bitmap",
             "backup_interval_seconds": 300,
@@ -847,12 +847,6 @@ def watchdog():
                         log_error("Thread restarted", extra={"thread_name": name})
                     except Exception as e:
                         log_error("Failed restarting thread", exc=e, extra={"thread_name": name})
-            # if no twitch messages for some time, log a warning (but don't spam)
-            try:
-                if last_twitch_time and (time.time() - last_twitch_time) > 120:
-                    log_error("No Twitch messages received recently", extra={"seconds_since_last": time.time() - last_twitch_time})
-            except Exception:
-                pass
         except Exception as e:
             log_error("Watchdog error", exc=e)
 
